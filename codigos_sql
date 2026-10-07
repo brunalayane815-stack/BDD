@@ -1,0 +1,78 @@
+CREATE DATABASE codigos_sql;
+
+USE codigos_sql;
+
+CREATE TABLE cliente (ç
+    id_cliente INT IDENTITY(1,1) PRIMARY KEY,
+    nome_cliente VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    dt_nasc DATE NOT NULL
+);
+
+CREATE TABLE produto (
+    id_produto INT IDENTITY(1,1) PRIMARY KEY,
+    produto VARCHAR(100) NOT NULL,
+    dt_entrega DATE NOT NULL,
+    preco DECIMAL(19,2) NOT NULL,
+    qtd INT NOT NULL
+);
+
+CREATE TABLE vendas (
+    id_venda INT IDENTITY(1,1) PRIMARY KEY,
+    id_produto INT NOT NULL,
+    preco DECIMAL(10,2) NOT NULL,
+    qtd INT NOT NULL
+);
+
+INSERT INTO cliente (nome_cliente, email, dt_nasc)
+VALUES ('michael Jackson', 'm.jakson@gmail.com', '1920-03-22');
+
+INSERT INTO cliente (nome_cliente, email, dt_nasc)
+VALUES ('pompompurin', 'pom.purinn@gmail.com', '1996-04-16');
+
+INSERT INTO cliente (nome_cliente, email, dt_nasc)
+VALUES ('pochaco', 'pocha.co123n@gmail.com', '1920-03-22');
+
+
+--criando uma chave FK
+-- na tablea venda (FK)
+
+--tabela pai
+USE db_senai;
+
+--recerbe a chave estrangeira
+ALTER TABLE vendas 
+
+--nome da chave estrangeira
+ADD CONSTRAINT fk_vendas_cliente
+
+--nome do campo
+FOREIGN KEY(id_cliente)
+
+--chave primaria
+REFERENCES  cliente(id_cliente);
+
+SELECT * FROM 'vendas'
+
+
+
+
+
+
+USE db_senai;
+ALTER TABLE produto 
+ADD CONSTRAINT fk_vendas_produto
+FOREIGN KEY(id_produto)
+REFERENCES  produto(id_produto);
+
+SELECT * FROM 'produto'
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------
+
+USE db_senai
+
+ALTER TABLE cliente
+ADD CONSTRAINT UK_email_unico
+UNIQUE(email);
