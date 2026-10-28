@@ -40,3 +40,36 @@ from produto
 inner join venda 
 on venda.id_produto = produto.id_produto 
 where venda.forma_pagamento in("PIX","Boleto");/
+
+13-SELECT cliente.nome_cliente, produto.nome_produto, venda.data_venda, venda.quantidade
+from venda
+inner join cliente
+on cliente.id_cliente = cliente.id_cliente
+inner join produto
+on venda.id_produto =  venda.id_produto;
+
+14-SELECT  produto.nome_produto,venda.forma_pagamento 
+from produto
+inner join venda 
+on venda.id_produto = produto.id_produto 
+order by venda.data_venda desc;
+
+15- SELECT  produto.nome_produto,venda.forma_pagamento 
+from produto
+inner join venda 
+on venda.id_produto = produto.id_produto 
+order by venda.data_venda asc;
+
+16- select cliente.nome_cliente, cliente.email, produto.nome_produto,venda.forma_pagamento, produto.marca, produto.categoria, venda.status_venda 
+from produto
+ INNER JOIN cliente 
+ on produto.id_produto = cliente.id_cliente INNER JOIN venda 
+ on venda.id_produto WHERE venda.status_venda in ("concluida", "cancelada") 
+ order by venda.status_venda DESC;
+
+--exerci 2--
+
+
+1- UPDATE clientes 
+SET email = 'email@email.com.br' 
+WHERE estado IN ('SP', 'RJ');
