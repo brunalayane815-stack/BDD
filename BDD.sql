@@ -1,4 +1,4 @@
-
+--Exercicio 1--
 ATIVIDADE READ
 
 1-SELECT * FROM produto; -- tabela produto /
@@ -67,9 +67,64 @@ from produto
  on venda.id_produto WHERE venda.status_venda in ("concluida", "cancelada") 
  order by venda.status_venda DESC;
 
---exerci 2--
+
+-----------------------------------------------------------------------------------------------------------------
 
 
-1- UPDATE clientes 
-SET email = 'email@email.com.br' 
-WHERE estado IN ('SP', 'RJ');
+--Exercicio 2-- 
+ ATIVIDADE UPDATE
+
+
+1--chave unica no email
+
+2-UPDATE cliente
+set data_cadastro = "2026-01-01"
+WHERE cidade in ("manaus");
+
+3-update cliente
+set nome_cliente = "michal jackson"
+where id_cliente = 10;
+
+4-update produto
+set nome_produto = "notbook lenovo ideapad7"
+where id_produto = 1;
+
+5-update produto
+set preco_unitario= "4999.99"
+where marca in ("1");
+
+6-update venda
+set desconto_percentual= "0.01"
+where quantidade = 2;
+
+
+------------------------------------------------------------------------------------------------------------
+--exercicio 4--
+ATIVIDADE INSERT
+
+1-INSERT INTO cliente (nome_cliente, email, cidade, estado, data_cadastro)
+VALUES ("Rubervaldo Sesiano", "ruber.sesi@gmail.com", "Jaguariúna", "SP", CURDATE());
+
+2-INSERT INTO produto (nome_produto, categoria, marca, preco_unitario, estoque, ativo, data_cadastro)
+VALUES ("MousePad 5POL", "Acessórios", "Lumix", 59.98, 35, 1, CURDATE());
+
+3-INSERT INTO venda (
+    id_produto,
+    id_cliente,
+    data_venda,
+    quantidade,
+    preco_unitario_venda,
+    desconto_percentual,
+    forma_pagamento,
+    status_venda
+)
+VALUES (
+    (SELECT id_produto FROM produto WHERE nome_produto = 'MousePad 5POL' LIMIT 1),
+    (SELECT id_cliente FROM cliente WHERE nome_cliente = 'Rubervaldo Sesiano' LIMIT 1),
+    "2026-10-21",
+    10,
+    59.98,
+    1.33,
+    'PIX',
+    'Concluída'
+);
